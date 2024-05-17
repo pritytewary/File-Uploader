@@ -24,15 +24,15 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.post("/upload", upload.single("file"), (req, res) => {
-  // Assuming the response contains the filename
+ 
   const filename = req.file.filename;
-  // Construct the URL for the file
+
   const fileUrl = `/files/${filename}`;
-  // Send the file URL as response
+
   res.json({ url: fileUrl });
 });
 
-// Serve uploaded files statically
+
 app.use("/files", express.static(path.join(__dirname, "public/files")));
 
 app.listen(3000, () => {
